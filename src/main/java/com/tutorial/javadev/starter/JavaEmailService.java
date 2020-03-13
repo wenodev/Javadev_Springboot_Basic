@@ -1,4 +1,4 @@
-package com.tutorial.javadev;
+package com.tutorial.javadev.starter;
 
 import lombok.AllArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;

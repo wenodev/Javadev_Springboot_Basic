@@ -1,4 +1,4 @@
-package com.tutorial.javadev;
+package com.tutorial.javadev.starter;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
