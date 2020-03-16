@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -33,22 +34,29 @@ public class CustomerService {
 
     @Transactional
     public List<CustomerDto> findAllCustomer(){
-        List<Customer> customerList = customerRepository.findAll();
-        List<CustomerDto> customerDtoList = new ArrayList<>();
-        BeanUtils.copyProperties(customerList, customerDtoList);
-        return  customerDtoList;
+//        List<Customer> customerList = customerRepository.findAll();
+//        List<CustomerDto> customerDtoList = new ArrayList<>();
+//        BeanUtils.copyProperties(customerList, customerDtoList);
+//        return  customerDtoList;
+
+        return customerRepository.findAll().stream()
+                .map(CustomerDto::new)
+                .collect(Collectors.toList());
     }
 
 
     @Transactional
     public CustomerDto findCustomer(Long id){
         Optional<Customer> customer = customerRepository.findById(id);
-        CustomerDto customerDto = new CustomerDto();
-        BeanUtils.copyProperties(customer, customerDto);
-        return customerDto;
+        CustomerDto customerDto = CustomerDto.builder()
+                .age(customer.get().getAge())
+                .email(customer.get().getEmail())
+                .name(customer.get().getName())
+                .build();
+
+        return  customerDto;
+
     }
-
-
 
 
     @Transactional

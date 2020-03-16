@@ -1,6 +1,7 @@
 package com.tutorial.javadev.rest;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,12 @@ public class CustomerDto {
         this.name = name;
         this.age = age;
         this.email = email;
+    }
+
+    public CustomerDto(Customer customer) {
+        this.name = customer.getName();
+        this.age = customer.getAge();
+        this.email = customer.getEmail();
     }
 
     public Customer toEntity(){
