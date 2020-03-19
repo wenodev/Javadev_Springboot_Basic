@@ -23,27 +23,13 @@ public class CustomerService {
         return customerRepository.save(customerDto.toEntity()).getId();
     }
 
-//    @Transactional
-//   public List<CustomerDto> findAllCustomer(){
-//        List<Customer> customerList = customerRepository.findAll();
-//        List<CustomerDto> customerDtoList = new ArrayList<>();
-//
-//        BeanUtils.copyProperties(customerList, customerDtoList);
-//        return  customerDtoList;
-//    }
-
     @Transactional
     public List<CustomerDto> findAllCustomer(){
-//        List<Customer> customerList = customerRepository.findAll();
-//        List<CustomerDto> customerDtoList = new ArrayList<>();
-//        BeanUtils.copyProperties(customerList, customerDtoList);
-//        return  customerDtoList;
 
         return customerRepository.findAll().stream()
                 .map(CustomerDto::new)
                 .collect(Collectors.toList());
     }
-
 
     @Transactional
     public CustomerDto findCustomer(Long id){
@@ -57,7 +43,6 @@ public class CustomerService {
         return  customerDto;
 
     }
-
 
     @Transactional
     public void deleteCustomer(Long id){
